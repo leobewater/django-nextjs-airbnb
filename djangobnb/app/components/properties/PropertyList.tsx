@@ -6,6 +6,9 @@ const PropertyList = () => {
       <PropertyListItem />
       <PropertyListItem />
       <PropertyListItem />
+      <PropertyListItem />
+      <PropertyListItem />
+      <PropertyListItem />
     </>
   );
 };
