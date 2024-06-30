@@ -7,7 +7,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # use netcat to ping the db to make sure it's running in entrypoint.sh
-RUN apt-get update && apt-get install -y netcat
+RUN apt-get update && apt-get install -y netcat postgresql-client
 
 RUN pip install --upgrade pip
 COPY ./requirements.txt .

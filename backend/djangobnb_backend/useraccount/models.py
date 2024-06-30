@@ -1,5 +1,4 @@
 import uuid
-from typing import Any
 
 from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, UserManager
@@ -11,8 +10,8 @@ class CustomUserManager(UserManager):
     # use name instead of default first and last name
     def _create_user(self, name, email, password, **extra_fields):
         if not email:
-            raise ValueError("You have not specified a valid email address")
-
+            raise ValueError("You have not specified a valid e-mail address")
+    
         email = self.normalize_email(email)
         user = self.model(email=email, name=name, **extra_fields)
         user.set_password(password)
@@ -33,8 +32,7 @@ class CustomUserManager(UserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     # override id with UUID
-    id = models.UUIDField(
-        primary_key=True, default=uuid.uuid64, editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(unique=True)
     name = models.CharField(max_length=255, blank=True, null=True)
     avatar = models.ImageField(upload_to='uploads/avatars')
