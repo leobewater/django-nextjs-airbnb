@@ -15,4 +15,5 @@ Video: https://www.youtube.com/watch?v=AnhKSBTWCWc&ab_channel=CodeWithStein
 # apply migrations
 > docker-compose exec web python manage.py migrate
 > docker-compose exec web python manage.py startapp useraccount
+> py manage.py startapp property
 ```
