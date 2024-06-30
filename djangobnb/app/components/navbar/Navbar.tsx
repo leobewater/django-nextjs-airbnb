@@ -1,4 +1,5 @@
 import SearchFilters from '@/app/components/navbar/SearchFilters';
+import UserNav from '@/app/components/navbar/UserNav';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -12,12 +13,13 @@ const Navbar = () => {
             <Image src='/logo.png' alt='DjangoBnb' width={180} height={38} />
           </Link>
 
-          <div className="flex space-x-6">
+          <div className='flex space-x-6'>
             <SearchFilters />
           </div>
 
-          <div className="flex items-center space-x-6">
-            Add property - User nav
+          <div className='flex items-center space-x-6'>
+            Add Property
+            <UserNav />
           </div>
         </div>
       </div>
