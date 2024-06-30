@@ -1,3 +1,4 @@
+import AddPropertyButton from '@/app/components/navbar/AddPropertyButton';
 import SearchFilters from '@/app/components/navbar/SearchFilters';
 import UserNav from '@/app/components/navbar/UserNav';
 import Image from 'next/image';
@@ -18,7 +19,7 @@ const Navbar = () => {
           </div>
 
           <div className='flex items-center space-x-6'>
-            Add Property
+            <AddPropertyButton />
             <UserNav />
           </div>
         </div>
