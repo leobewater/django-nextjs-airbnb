@@ -1,3 +1,5 @@
+'use client';
+
 import CustomButton from '@/app/components/forms/CustomButton';
 
 const ConversationDetail = () => {
@@ -20,10 +22,10 @@ const ConversationDetail = () => {
           type='text'
           placeholder='Type your message...'
           className='w-full p-2 bg-gray-200 rounded-xl'
-          value="hello world"
+          value='hello world'
         />
 
-        <CustomButton label="Send" />
+        <CustomButton label='Send' onClick={() => console.log('Clicked')} className="w-[100px]" />
       </div>
     </>
   );
