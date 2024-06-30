@@ -5,4 +5,8 @@ Video: https://www.youtube.com/watch?v=AnhKSBTWCWc&ab_channel=CodeWithStein
 > project name "djangobnb"
 
 > npm i zustand
+
+# backend
+> cd backend
+> docker-compose up
 ```
