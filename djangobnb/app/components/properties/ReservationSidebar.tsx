@@ -1,25 +1,57 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { Range } from 'react-date-range';
+import apiService from '@/app/services/apiService';
+import useLoginModal from '@/app/hooks/useLoginModal';
+
+const initialDateRange = {
+  startDate: new Date(),
+  endDate: new Date(),
+  key: 'selection',
+};
+
 export type Property = {
   id: string;
+  guests: number;
   price_per_night: number;
 };
 
 interface ReservationSidebarProps {
+  userId: string | null;
   property: Property;
 }
 
-const ReservationSidebar = ({ property }: ReservationSidebarProps) => {
+const ReservationSidebar = ({ property, userId }: ReservationSidebarProps) => {
+  const loginModal = useLoginModal();
+
+  const [fee, setFee] = useState<number>(0);
+  const [nights, setNights] = useState<number>(1);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [dateRange, setDateRange] = useState<Range>(initialDateRange);
+  const [minDate, setMinDate] = useState<Date>(new Date());
+  const [guests, setGuests] = useState<string>('1');
+  const guestsRange = Array.from(
+    { length: property.guests },
+    (_, index) => index + 1
+  );
+
   return (
     <aside className='mt-6 p-6 col-span-2 rounded-xl border border-gray-300 shadow-xl'>
       <h2 className='mb-5 text-2xl'>${property.price_per_night} per night</h2>
 
       <div className='mb-6 p-3 border border-gray-400 rounded-xl'>
         <label className='mb-2 block font-bold text-xs'>Guests</label>
-        <select className='w-full -ml-1 text-sm'>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
+        <select
+          value={guests}
+          onChange={(e) => setGuests(e.target.value)}
+          className='w-full -ml-1 text-sm'
+        >
+          {guestsRange.map((number) => (
+            <option key={number} value={number}>
+              {number}
+            </option>
+          ))}
         </select>
       </div>
 
@@ -28,20 +60,22 @@ const ReservationSidebar = ({ property }: ReservationSidebarProps) => {
       </div>
 
       <div className='mb-4 flex justify-between align-center'>
-        <p>${property.price_per_night} * 4 nights</p>
-        <p>$800</p>
+        <p>
+          ${property.price_per_night} * {nights} nights
+        </p>
+        <p>${totalPrice}</p>
       </div>
 
       <div className='mb-4 flex justify-between align-center'>
         <p>DjangoBnb fee</p>
-        <p>$40</p>
+        <p>${fee}</p>
       </div>
 
       <hr />
 
       <div className='mt-4 flex justify-between align-center font-bold'>
         <p>Total</p>
-        <p>$840</p>
+        <p>${totalPrice}</p>
       </div>
     </aside>
   );
