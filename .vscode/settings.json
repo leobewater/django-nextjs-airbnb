@@ -1,0 +1,12 @@
+{
+  "python.autoComplete.extraPaths": [
+    "${workspaceFolder}/backend/djangobnb_backend/"
+  ],
+  "python.pythonPath": "${workspaceFolder}/env/bin/python",
+  "python.languageServer": "Pylance",
+  "python.analysis.typeCheckingMode": "basic",
+  "python.envFile": "${workspaceFolder}/backend/.env.dev",
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/backend/djangobnb_backend/"
+  ]
+}
