@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import MenuLink from '@/app/components/navbar/MenuLink';
 import { resetAuthCookies } from '@/app/lib/actions';
 
-const LogoutButton: React.FC = () => {
+const LogoutButton = () => {
   const router = useRouter();
 
   const submitLogout = async () => {

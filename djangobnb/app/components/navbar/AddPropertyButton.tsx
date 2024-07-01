@@ -1,16 +1,22 @@
 'use client';
 
 import useAddPropertyModal from '@/app/hooks/useAddPropertyModal';
+import useLoginModal from '@/app/hooks/useLoginModal';
 
 interface AddPropertyButtonProps {
   userId?: string | null;
 }
 
 const AddPropertyButton = ({ userId }: AddPropertyButtonProps) => {
+  const loginModal = useLoginModal();
   const addPropertyModal = useAddPropertyModal();
 
   const airbnbYourHome = () => {
-    addPropertyModal.open();
+    if (userId) {
+      addPropertyModal.open();
+    } else {
+      loginModal.open();
+    }
   };
 
   return (
