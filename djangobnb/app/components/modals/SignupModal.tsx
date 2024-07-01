@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import CustomButton from '@/app/components/forms/CustomButton';
 import useSignupModal from '@/app/hooks/useSignupModal';
 import apiService from '@/app/services/apiService';
+import { handleLogin } from '@/app/lib/actions';
 
 const SignupModal = () => {
   const router = useRouter();
@@ -24,9 +25,13 @@ const SignupModal = () => {
       password2: password2,
     };
 
-    const response = await apiService.post('/api/auth/register/', JSON.stringify(formData));
+    const response = await apiService.post(
+      '/api/auth/register/',
+      JSON.stringify(formData)
+    );
     if (response.access) {
-      // handleLogin
+      // store info to cookies
+      handleLogin(response.user.pk, response.access, response.refresh);
 
       signupModal.close();
       router.push('/');
@@ -74,10 +79,7 @@ const SignupModal = () => {
           );
         })}
 
-        <CustomButton
-          label='Submit'
-          onClick={submitSignup}
-        />
+        <CustomButton label='Submit' onClick={submitSignup} />
       </form>
     </>
   );
