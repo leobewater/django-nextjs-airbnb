@@ -63,6 +63,13 @@ const UserNav = ({ userId }: UserNavProps) => {
                 }}
               />
               <MenuLink
+                label='My Favorites'
+                onClick={() => {
+                  setIsOpen(false);
+                  router.push(`/myfavorites`);
+                }}
+              />
+              <MenuLink
                 label='My Reservations'
                 onClick={() => {
                   setIsOpen(false);
