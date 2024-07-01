@@ -10,9 +10,9 @@ from .models import User
 from .serializers import UserDetailSerializer
 
 
-@api_view(['GET'])  # accept GET only
-@authentication_classes([])  # guest allowed
-@permission_classes([])  # no
+@api_view(['GET'])
+@authentication_classes([])
+@permission_classes([])
 def landlord_detail(request, pk):
     user = User.objects.get(pk=pk)
     serializer = UserDetailSerializer(user, many=False)
@@ -20,8 +20,8 @@ def landlord_detail(request, pk):
     return JsonResponse(serializer.data, safe=False)
 
 
-@api_view(['GET'])  # accept GET only
-def reservations_list(request, pk):
+@api_view(['GET'])
+def reservations_list(request):
     reservations = request.user.reservations.all()
     serializer = ReservationsListSerializer(reservations, many=True)
 
