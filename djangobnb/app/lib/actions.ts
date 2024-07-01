@@ -13,7 +13,7 @@ export async function handleLogin(
     maxAge: 60 * 60 * 24 * 7, // one week
     path: '/',
   });
-  
+
   cookies().set('session_access_token', accessToken, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
@@ -27,4 +27,16 @@ export async function handleLogin(
     maxAge: 60 * 60 * 24 * 7, // one week
     path: '/',
   });
+}
+
+export async function resetAuthCookies() {
+  cookies().set('session_userid', '');
+  cookies().set('session_access_token', '');
+  cookies().set('session_refresh_token', '');
+}
+
+// Get Data from Cookie
+export async function getUserId() {
+  const userId = cookies().get('session_userid')?.value;
+  return userId ?? null;
 }
