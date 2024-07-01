@@ -9,7 +9,7 @@ Video: https://www.youtube.com/watch?v=AnhKSBTWCWc&ab_channel=CodeWithStein
 
 # backend (django)
 > cd backend
-> docker-compose up
+> docker-compose up --build
 # view site at http://localhost:8000/
 
 # apply migrations
