@@ -5,7 +5,10 @@ import PropertyListItem from '@/app/components/properties/PropertyListItem';
 
 export type PropertyType = {
   id: string;
-}
+  title: string;
+  price_per_night: number;
+  image_url: string;
+};
 
 const PropertyList = () => {
   const [properties, setProperties] = useState<PropertyType[]>([]);
@@ -28,7 +31,7 @@ const PropertyList = () => {
   return (
     <>
       {properties.map((property) => {
-        return <PropertyListItem key={property.id} />;
+        return <PropertyListItem key={property.id} property={property} />;
       })}
     </>
   );
