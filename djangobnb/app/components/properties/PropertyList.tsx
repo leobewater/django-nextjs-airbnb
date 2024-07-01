@@ -3,8 +3,12 @@
 import { useEffect, useState } from 'react';
 import PropertyListItem from '@/app/components/properties/PropertyListItem';
 
+export type PropertyType = {
+  id: string;
+}
+
 const PropertyList = () => {
-  const [properties, setProperties] = useState([]);
+  const [properties, setProperties] = useState<PropertyType[]>([]);
 
   const getProperties = async () => {
     const url = 'http://localhost:8000/api/properties/';
@@ -24,7 +28,7 @@ const PropertyList = () => {
   return (
     <>
       {properties.map((property) => {
-        return <PropertyListItem />;
+        return <PropertyListItem key={property.id} />;
       })}
     </>
   );
