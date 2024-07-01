@@ -24,6 +24,7 @@ DELETE FROM django_migrations WHERE app = 'account';
 
 # Recreate Migrations
 > docker-compose exec web python manage.py makemigrations useraccount
+> docker-compose exec web python manage.py makemigrations property
 > docker-compose exec web python manage.py migrate
 
 # Flush db
