@@ -1,4 +1,5 @@
 from django.http import JsonResponse
+from property.serializers import ReservationsListSerializer
 from rest_framework.decorators import (
     api_view,
     authentication_classes,
@@ -15,5 +16,13 @@ from .serializers import UserDetailSerializer
 def landlord_detail(request, pk):
     user = User.objects.get(pk=pk)
     serializer = UserDetailSerializer(user, many=False)
+
+    return JsonResponse(serializer.data, safe=False)
+
+
+@api_view(['GET'])  # accept GET only
+def reservations_list(request, pk):
+    reservations = request.user.reservations.all()
+    serializer = ReservationsListSerializer(reservations, many=True)
 
     return JsonResponse(serializer.data, safe=False)
