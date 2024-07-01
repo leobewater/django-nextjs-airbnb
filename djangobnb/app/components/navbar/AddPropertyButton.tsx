@@ -2,7 +2,11 @@
 
 import useAddPropertyModal from '@/app/hooks/useAddPropertyModal';
 
-const AddPropertyButton = () => {
+interface AddPropertyButtonProps {
+  userId?: string | null;
+}
+
+const AddPropertyButton = ({ userId }: AddPropertyButtonProps) => {
   const addPropertyModal = useAddPropertyModal();
 
   const airbnbYourHome = () => {

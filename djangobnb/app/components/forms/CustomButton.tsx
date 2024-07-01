@@ -4,11 +4,7 @@ interface CustomButtonProps {
   onClick: () => void;
 }
 
-const CustomButton: React.FC<CustomButtonProps> = ({
-  label,
-  className,
-  onClick,
-}) => {
+const CustomButton = ({ label, className, onClick }: CustomButtonProps) => {
   return (
     <div
       onClick={onClick}

@@ -5,7 +5,7 @@ interface PropertyProps {
   property: PropertyType;
 }
 
-const PropertyListItem: React.FC<PropertyProps> = ({ property }) => {
+const PropertyListItem = ({ property }: PropertyProps) => {
   return (
     <div className='cursor-pointer'>
       <div className='relative overflow-hidden aspect-square rounded-xl'>
