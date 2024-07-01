@@ -25,13 +25,15 @@ const PropertyDetailPage = async ({ params }: { params: { id: string } }) => {
           </span>
           <hr />
           <div className='py-6 flex items-center space-x-4'>
-            <Image
-              src={property.landlord.avatar_url}
-              width={50}
-              height={50}
-              className='rounded-full'
-              alt={property.landlord.name}
-            />
+            {property.landlord.avatar_url && (
+              <Image
+                src={property.landlord.avatar_url}
+                width={50}
+                height={50}
+                className='rounded-full'
+                alt={property.landlord.name}
+              />
+            )}
 
             <p>
               <strong>{property.landlord.name}</strong> is your host
@@ -42,7 +44,7 @@ const PropertyDetailPage = async ({ params }: { params: { id: string } }) => {
 
           <p className='mt-6 text-lg'>{property.description}</p>
         </div>
-        <ReservationSidebar />
+        <ReservationSidebar property={property} />
       </div>
     </main>
   );
