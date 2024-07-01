@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { Range } from 'react-date-range';
+import { differenceInDays, eachDayOfInterval } from 'date-fns';
+
 import apiService from '@/app/services/apiService';
 import useLoginModal from '@/app/hooks/useLoginModal';
 
@@ -36,6 +38,24 @@ const ReservationSidebar = ({ property, userId }: ReservationSidebarProps) => {
     (_, index) => index + 1
   );
 
+  useEffect(() => {
+    if (dateRange.startDate && dateRange.endDate) {
+      const dayCount = differenceInDays(dateRange.startDate, dateRange.endDate);
+
+      if (dayCount && property.price_per_night) {
+        const _fee = ((dayCount * property.price_per_night) / 100) * 5;
+        setFee(_fee);
+        setTotalPrice(dayCount * property.price_per_night + _fee);
+        setNights(dayCount);
+      } else {
+        const _fee = (property.price_per_night / 100) * 5;
+        setFee(_fee);
+        setTotalPrice(property.price_per_night + _fee);
+        setNights(1);
+      }
+    }
+  }, [dateRange]);
+
   return (
     <aside className='mt-6 p-6 col-span-2 rounded-xl border border-gray-300 shadow-xl'>
       <h2 className='mb-5 text-2xl'>${property.price_per_night} per night</h2>
@@ -63,7 +83,7 @@ const ReservationSidebar = ({ property, userId }: ReservationSidebarProps) => {
         <p>
           ${property.price_per_night} * {nights} nights
         </p>
-        <p>${totalPrice}</p>
+        <p>${property.price_per_night * nights}</p>
       </div>
 
       <div className='mb-4 flex justify-between align-center'>
